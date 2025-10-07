@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 # 🔍 REQUIRED FILES / STRUCTURE
 # ==============================
 REQUIRED_FILES = [
-    "docker-compose.yaml",
+    "docker-compose.yml",
     "complete-dashboard.sh",
     "complete-dashboard.json",
     "Readme.md",
