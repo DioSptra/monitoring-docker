@@ -10,7 +10,7 @@ REQUIRED_FILES = [
     "docker-compose.yml",
     "complete-dashboard.sh",
     "complete-dashboard.json",
-    "Readme.md",
+    "README.md",
 
     # Main app folders & files
     "ecommerce-app/app.py",
