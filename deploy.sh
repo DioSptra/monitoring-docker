@@ -36,7 +36,7 @@ echo -e "${GREEN}✅ REPO SUDAH TERUPDATE ! ! !${RESET}\n"
 echo -e "${RED}▶ JIKA REPO BELUM ADA MAKA CLONE UNTUK PERTAMA KALI . . .${RESET}"
 else
 echo -e "${YELLOW}🔄 JALANKAN PERINTAH : GIT CLONE . . . ${RESET}"
-  git clone https://github.com/youraccount/yourfile.git $APP_DIR
+  git clone https://github.com:DioSptra/monitoring-docker.git $APP_DIR
   cd $APP_DIR
 fi
 echo -e "${GREEN}✅ CLONE SELESAI ! ! !${RESET}\n"
