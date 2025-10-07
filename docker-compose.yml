@@ -1,0 +1,109 @@
+version: '3.8'
+
+services:
+  # Prometheus Service
+  prometheus:
+    build:
+      context: ./prometheus
+      dockerfile: Dockerfile
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_data:/prometheus
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  # Grafana Service
+  grafana:
+    build:
+      context: ./grafana
+      dockerfile: Dockerfile
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - monitoring
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+  # Node Exporter Service
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  # Sample Application (Basic Monitoring)
+  sample-app:
+    build:
+      context: ./sample-app
+      dockerfile: Dockerfile
+    container_name: sample-app
+    ports:
+      - "8000:8000"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  # E-Commerce Dashboard
+  ecommerce-app:
+    build:
+      context: ./ecommerce-app
+      dockerfile: Dockerfile
+    container_name: ecommerce-app
+    ports:
+      - "8001:8000"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  # Weather Monitoring App
+  weather-app:
+    build:
+      context: ./weather-app
+      dockerfile: Dockerfile
+    container_name: weather-app
+    ports:
+      - "8002:8001"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  # Social Media Analytics App
+  social-app:
+    build:
+      context: ./social-app
+      dockerfile: Dockerfile
+    container_name: social-app
+    ports:
+      - "8003:8002"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+# Networks
+networks:
+  monitoring:
+    driver: bridge
+
+# Volumes
+volumes:
+  prometheus_data:
+  grafana_data:
