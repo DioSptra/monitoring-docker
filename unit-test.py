@@ -27,10 +27,10 @@ REQUIRED_FILES = [
 
     # Monitoring
     "grafana/Dockerfile",
-    "grafana/datasources.yaml",
+    "grafana/datasources.yml",
 
     "prometheus/Dockerfile",
-    "prometheus/prometheus.yaml",
+    "prometheus/prometheus.yml",
 ]
 
 # 🎨 Warna ANSI
