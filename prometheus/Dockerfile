@@ -1,5 +1,7 @@
 FROM prom/prometheus:latest
 
+RUN addgroup --system prometheus && adduser --system --ingroup prometheus prometheus
+
 # Copy konfigurasi prometheus
 COPY prometheus.yml /etc/prometheus/prometheus.yml
 
