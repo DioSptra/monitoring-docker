@@ -75,7 +75,7 @@ def check_app_structure():
                 raise FileNotFoundError(full_path)
     print(f"{GREEN}✅ Semua aplikasi punya struktur lengkap!{RESET}")
 
-def check_docker_compose_services(path="docker-compose.yaml"):
+def check_docker_compose_services(path="docker-compose.yml"):
     """Pastikan docker-compose berisi service utama"""
     spinner_print(f"[CHECK] Mengecek service di {path}")
     with open(path, "r", encoding="utf-8") as f:
@@ -84,9 +84,9 @@ def check_docker_compose_services(path="docker-compose.yaml"):
     expected_services = ["grafana", "prometheus", "ecommerce", "sample", "social"]
     for svc in expected_services:
         if svc not in content:
-            print(f"{RED}[ERROR] Service '{svc}' tidak ditemukan di docker-compose.yaml!{RESET}")
+            print(f"{RED}[ERROR] Service '{svc}' tidak ditemukan di docker-compose.yml!{RESET}")
             raise AssertionError(f"Service '{svc}' missing")
-    print(f"{GREEN}✅ Semua service ditemukan di docker-compose.yaml!{RESET}")
+    print(f"{GREEN}✅ Semua service ditemukan di docker-compose.yml!{RESET}")
 
 def main():
     print(f"{RED}=== START UNIT TEST FOR MONITORING-DOCKER PROJECT ==={RESET}\n")
