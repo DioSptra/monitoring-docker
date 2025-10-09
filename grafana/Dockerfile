@@ -2,8 +2,8 @@ FROM grafana/grafana:latest
 
 USER root
 
-COPY --chown=472:0 ./provisioning/datasources/datasource.yml \
-     /etc/grafana/provisioning/datasources/datasource.yml
+COPY --chown=472:0 ./provisioning/datasources/datasources.yml \
+     /etc/grafana/provisioning/datasources/datasources.yml
 
 # Set environment variables
 ENV GF_SECURITY_ADMIN_PASSWORD=admin
