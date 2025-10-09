@@ -1,11 +1,10 @@
 FROM prom/prometheus:latest
 
+USER root
 # Copy konfigurasi prometheus
-COPY prometheus.yml /etc/prometheus/prometheus.yml
+COPY --chown=65534:65534 --chmod=0644 prometheus.yml /etc/prometheus/prometheus.yml
 
-# Set permission
-RUN chmod 644 /etc/prometheus/prometheus.yml
-
+USER 65534
 # Expose port 9090
 EXPOSE 9090
 

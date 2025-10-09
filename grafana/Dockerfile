@@ -1,11 +1,13 @@
 FROM grafana/grafana:latest
 
+USER root
+
+COPY --chown=472:0 ./provisioning/datasources/datasource.yml \
+     /etc/grafana/provisioning/datasources/datasource.yml
+
 # Set environment variables
 ENV GF_SECURITY_ADMIN_PASSWORD=admin
 ENV GF_USERS_ALLOW_SIGN_UP=false
-
-# Copy datasource configuration
-COPY datasources.yml /etc/grafana/provisioning/datasources/datasources.yml
 
 # Expose port 3000
 EXPOSE 3000
